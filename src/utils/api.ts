@@ -1,1 +1,1 @@
-export const  BASE_URL = "https://lushroot-us.backendless.app/api";
+export const  NEXT_FETCH_API = "https://localhost:8000";

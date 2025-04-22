@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { useFormik } from "formik";
 import useRegister from "@/hooks/api/auth/useRegister";
 import { RegisterValidationSchema } from "../schema";
+import Link from "next/link";
 
 export default function RegisterForm({
    className,
@@ -141,12 +142,12 @@ export default function RegisterForm({
                      </Button>
                      <div className="text-center text-sm">
                         Already have an account?{" "}
-                        <a
+                        <Link
                            href="/login"
                            className="underline underline-offset-4"
                         >
                            Login
-                        </a>
+                        </Link>
                      </div>
                   </div>
                </form>
