@@ -15,7 +15,7 @@ const useRegister = () => {
 
    return useMutation({
       mutationFn: async (payload: RegisterPayload) =>{
-         await axiosInstance.post(`/auth/register`, {
+         await axiosInstance.post(`/auth/register`, { 
             firstName: payload.firstName,
             lastName: payload.lastName,
             email: payload.email,

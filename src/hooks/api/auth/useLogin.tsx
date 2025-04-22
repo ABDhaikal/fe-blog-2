@@ -6,25 +6,20 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 
-
-interface LoginPyload {
-   login: string;
-   password: string;
-}
 const useLogin = () => {
    const router = useRouter();
    const dispatch = useAppDispatch();
    return useMutation({
-      mutationFn: async (payload: LoginPyload) => {
-         const { data } = await axiosInstance.post<User>(`/users/login`, {
-            login: payload.login,
+      mutationFn: async (payload: Pick<User, "email" | "password">) => {
+         const { data } = await axiosInstance.post(`/auth/login`, {
+            email: payload.email,
             password: payload.password,
          });
          return data;
       },
       onSuccess: (data) => {
-         dispatch(loginAction(data))
-         localStorage.setItem("user", JSON.stringify(data));
+         dispatch(loginAction(data));
+         localStorage.setItem("accessToken", JSON.stringify(data));
          alert("User logged in successfully");
          router.push("/");
       },

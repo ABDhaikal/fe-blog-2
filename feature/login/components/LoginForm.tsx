@@ -1,14 +1,13 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useFormik } from "formik";
-import useRegister from "@/hooks/api/auth/useRegister";
-import { LoginValidationSchema } from "./schema";
 import useLogin from "@/hooks/api/auth/useLogin";
+import { cn } from "@/lib/utils";
+import { useFormik } from "formik";
+import { LoginValidationSchema } from "./schema";
 
 export default function LoginForm({
    className,
@@ -17,7 +16,7 @@ export default function LoginForm({
    const { mutateAsync: login, isPending } = useLogin();
    const formik = useFormik({
       initialValues: {
-         login: "",
+         email: "",
          password: "",
       },
       validationSchema: LoginValidationSchema,
@@ -49,17 +48,17 @@ export default function LoginForm({
                      <div className="grid gap-2 relative">
                         <Label htmlFor="email">Email</Label>
                         <Input
-                           name="login"
-                           id="login"
+                           name="email"
+                           id="email"
                            type="email"
                            placeholder="m@example.com"
-                           value={formik.values.login}
+                           value={formik.values.email}
                            onChange={formik.handleChange}
                            onBlur={formik.handleBlur}
                         />
-                        {!!formik.touched.login && !!formik.errors.login && (
+                        {!!formik.touched.email && !!formik.errors.email && (
                            <span className="text-sm text-destructive absolute top-full">
-                              {formik.errors.login}
+                              {formik.errors.email}
                            </span>
                         )}
                      </div>
